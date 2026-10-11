@@ -38,7 +38,7 @@ class TestMaintenanceEquipmentCertification(TransactionCase):
                 "technician_user_id": cls.technician.id,
             }
         )
-        cls.env["ir.config_parameter"].sudo().set_param(_PARAM_ENABLED, "True")
+        cls.env["ir.config_parameter"].sudo().set_str(_PARAM_ENABLED, "True")
         cls.rule_30 = cls.env["maintenance.certificate.reminder.rule"].create(
             {"name": "30 Days Before", "days_before": 30}
         )
@@ -147,11 +147,11 @@ class TestMaintenanceEquipmentCertification(TransactionCase):
         is too far in the future, or the equipment has no responsible
         user."""
         with self.subTest("feature disabled"):
-            self.env["ir.config_parameter"].sudo().set_param(_PARAM_ENABLED, "False")
+            self.env["ir.config_parameter"].sudo().set_str(_PARAM_ENABLED, "False")
             cert = self._make_certificate(10)
             self._run_cron()
             self.assertEqual(cert.expiration_notify_count, 0)
-            self.env["ir.config_parameter"].sudo().set_param(_PARAM_ENABLED, "True")
+            self.env["ir.config_parameter"].sudo().set_str(_PARAM_ENABLED, "True")
             cert.unlink()
 
         with self.subTest("no reminder rules"):
