@@ -3,16 +3,15 @@
 
 {
     "name": "Maintenance Request Tags",
-    "summary": """
-        Adds tags to Maintenance Requests""",
-    "version": "19.0.1.0.0",
+    "summary": "Adds tags to Maintenance Requests",
+    "version": "20.0.1.0.0",
     "license": "AGPL-3",
     "author": "Dixmit, CreuBlanca, Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/maintenance",
     "depends": ["maintenance"],
     "data": [
-        "security/ir.model.access.csv",
         "views/maintenance_request_tag.xml",
         "views/maintenance_request.xml",
+        'security/ir.access.csv',
     ],
 }
